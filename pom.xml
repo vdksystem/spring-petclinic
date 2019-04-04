@@ -214,6 +214,10 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>maven-group</id>
+      <url>http://nexus:8081/repository/maven-group/</url>
+    </repository>  
   </repositories>
 
   <pluginRepositories>
