@@ -8,30 +8,36 @@ def pipelineConfig = [
 JSLInit(pipelineConfig)
 
 pipeline {
-        agent any
-        options {
-            skipDefaultCheckout(true)
-        }
-        stages {
-            stage( 'Checkout' ) {
-                checkout scm
+    agent any
+    options {
+        skipDefaultCheckout(true)
+    }
+    stages {
+        stage( 'Checkout' ) {
+            steps {
+                checkout scm    
             }
-            stage( 'Analyze' ) {
+        }
+        stage( 'Analyze' ) {
+            steps {
                 sonar.analyze()
             }
-            stage( 'Deploy' ) {
+        }
+        stage( 'Deploy' ) {
+            steps {
                 maven.deploy()
             }
         }
-        post {
-            always {
-                echo "Always actions"
-            }
-            success {
-                echo "Success actions"
-            }
-            failure {
-                echo "Failure actions"
-            }
+    }
+    post {
+        always {
+            echo "Always actions"
+        }
+        success {
+            echo "Success actions"
+        }
+        failure {
+            echo "Failure actions"
         }
     }
+}
