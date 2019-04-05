@@ -31,7 +31,7 @@ pipeline {
         stage( 'Analyze' ) {
             steps {
                 script {
-                    sonar.analyze('-Dmaven.test.failure.ignore')
+                    sonar.analyze()
                 }
             }
         }
