@@ -4,7 +4,7 @@ def pipelineConfig = [
         settings_config: 'nexus_maven_settings'
     ],
     sonar: [
-        server: 'sonar_server'
+        server: 'sonarqube'
     ]
 ]
 
