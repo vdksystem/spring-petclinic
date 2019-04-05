@@ -21,10 +21,17 @@ pipeline {
                 checkout scm
             }
         }
+        stage( 'Compile' ) {
+            steps {
+                script {
+                    maven.compile()
+                }
+            }
+        }
         stage( 'Analyze' ) {
             steps {
                 script {
-                    sonar.analyze()
+                    sonar.analyze('-Dmaven.test.failure.ignore')
                 }
             }
         }
