@@ -2,6 +2,9 @@ def pipelineConfig = [
     maven: [
         tool: 'M3',
         settings_config: 'nexus_maven_settings'
+    ],
+    sonar: [
+        server: 'sonar_server'
     ]
 ]
 
@@ -15,17 +18,21 @@ pipeline {
     stages {
         stage( 'Checkout' ) {
             steps {
-                checkout scm    
+                checkout scm
             }
         }
         stage( 'Analyze' ) {
             steps {
-                sonar.analyze()
+                script {
+                    sonar.analyze()
+                }
             }
         }
         stage( 'Deploy' ) {
             steps {
-                maven.deploy()
+                script {
+                    maven.deploy()
+                }
             }
         }
     }
